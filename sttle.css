@@ -1,0 +1,32 @@
+
+#barcode,
+#licenseNumber,
+#issueDate,
+#expiryDate,
+#classification {
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: #f8f9fa;
+  color: #495057;
+  text-align: center;
+}
+
+/* Optional: Add additional styling based on your design preferences */
+#barcode {
+  font-weight: bold;
+}
+
+#licenseNumber {
+  font-style: italic;
+}
+
+#issueDate,
+#expiryDate {
+  font-size: 0.9em;
+}
+
+#classification {
+  color: #28a745; /* Green color for classification */
+  font-weight: bold;
+}
+/* Add more styles as needed */
