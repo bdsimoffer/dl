@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bin Number Generator Facebook</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center relative">
+    <div class="bg-white shadow-lg rounded-lg p-6 w-full max-w-md">
+        <h1 class="text-2xl font-bold text-gray-800 text-center mb-4">Duckist BIN Number Generator</h1>
+        <p class="text-gray-600 text-center mb-6" id="limit-message-container">
+            Click the button below to generate free BIN. You can generate up to <strong id="limit-count">5</strong> BIN per day.
+        </p>
+        <button 
+            class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg w-full transition-all"
+            onclick="generateCode()"
+        >
+            Generate Code
+        </button>
+        <div id="code-container" class="mt-6 text-center hidden">
+            <p class="text-gray-800 text-lg font-semibold">Generated Code:</p>
+            <div class="bg-gray-100 border border-gray-300 rounded-lg px-4 py-2 shadow-sm mt-2 flex items-center justify-between">
+                <span id="generated-code" class="text-lg font-mono"></span>
+                <button 
+                    id="copy-button" 
+                    class="bg-green-500 hover:bg-green-600 text-white text-sm font-semibold py-1 px-3 rounded-lg ml-2"
+                    onclick="copyToClipboard()"
+                >
+                    Copy
+                </button>
+            </div>
+            <!-- Alert Inside the Card -->
+            <div id="alert" class="hidden mt-4 p-4 bg-green-500 text-white font-semibold text-lg rounded-lg shadow-md">
+                <div class="flex items-center justify-between">
+                    <span>Code copied to clipboard!</span>
+                    <button onclick="closeAlert()" class="ml-4 text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <p id="limit-message" class="text-red-500 text-center mt-4 hidden">You have reached the daily limit of 5 codes.</p>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
