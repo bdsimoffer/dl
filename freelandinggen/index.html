@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duckist Free Adsterra Landing Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Function to encode a URL into base64
+        function encodeToBase64(url) {
+            return btoa(url);  // Convert URL to Base64 encoding
+        }
+
+        // Function to generate URL with base64 param
+        function generateURL() {
+            const inputLink = document.getElementById("inputLink").value.trim();
+            if (!inputLink) {
+                // Show error toast if inputLink is empty
+                const errorToast = document.getElementById("errorToast");
+                errorToast.classList.remove("hidden");
+                setTimeout(() => {
+                    errorToast.classList.add("hidden");
+                }, 3000); // Hide after 3 seconds
+                return;
+            }
+            const base64EncodedParam = encodeToBase64(inputLink); // Encode the link
+            const generatedURL = `https://free.duckist.site/?dlink=${base64EncodedParam}`; // Construct final URL
+            const outputLink = document.getElementById("outputLink");
+            outputLink.textContent = generatedURL; // Display the generated URL
+            outputLink.href = generatedURL; // Set href of the generated URL
+            outputLink.classList.remove("hidden"); // Make the output link visible
+        }
+
+        // Function to copy the generated URL to clipboard
+        function copyToClipboard() {
+            const outputLink = document.getElementById("outputLink");
+            const tempTextArea = document.createElement("textarea");
+            tempTextArea.value = outputLink.href;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempTextArea);
+
+            // Show toast notification
+            const toast = document.getElementById("toast");
+            toast.classList.remove("hidden");
+            setTimeout(() => {
+                toast.classList.add("hidden");
+            }, 3000); // Hide after 3 seconds
+        }
+    </script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center flex-col">
+    <div class="bg-white p-6 rounded-lg shadow-md max-w-md w-full text-center mb-8">
+        <h1 class="text-2xl font-bold text-gray-800 mb-4">Generate A Free Adsterra Landing</h1>
+        <p class="text-gray-600 mb-6">Enter Your Direct Link Here.</p>
+        
+        <input 
+            type="text" 
+            id="inputLink" 
+            placeholder="Enter URL here" 
+            class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+        >
+        
+        <button 
+            onclick="generateURL()" 
+            class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition mb-4"
+        >
+            Generate URL
+        </button>
+
+        <div class="mb-4">
+            <p class="text-gray-600">Landing Page Link:</p>
+            <a 
+                id="outputLink" 
+                href="#" 
+                target="_blank" 
+                class="hidden text-blue-600 hover:underline break-all"
+            ></a>
+        </div>
+
+        <button 
+            onclick="copyToClipboard()" 
+            class="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition"
+        >
+            Copy Link
+        </button>
+    </div>
+
+    <!-- Toast notification for error (invalid input) -->
+    <div id="errorToast" class="hidden fixed top-10 left-1/2 transform -translate-x-1/2 bg-red-500 text-white py-2 px-4 rounded-lg shadow-md text-center">
+        Please enter a valid URL!
+    </div>
+
+    <!-- Toast notification for success (link copied) -->
+    <div id="toast" class="hidden fixed bottom-10 left-1/2 transform -translate-x-1/2 bg-green-500 text-white py-2 px-4 rounded-lg shadow-md text-center">
+        Link copied to clipboard!
+    </div>
+
+    <!-- Copyright Section -->
+    <footer class="p-4 text-center py-4 text-gray mt-8">
+        <p>&copy; 2025 Duckist. All rights reserved. <a href="https://t.me/duckist" class="text-blue-400">Visit me on Telegram</a></p>
+    </footer>
+</body>
+</html>
